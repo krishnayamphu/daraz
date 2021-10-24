@@ -1,4 +1,4 @@
-package com.aptech.controllers.admin;
+package com.aptech.controllers.admin.users;
 
 import com.aptech.dao.AdminDao;
 import com.aptech.models.Admin;

@@ -19,6 +19,6 @@ public class ProductController extends HttpServlet {
         List<Product> products= ProductDao.getAllProducts();
         request.setAttribute("products",products);
 
-        request.getRequestDispatcher("product/index.jsp").forward(request,response);
+        request.getRequestDispatcher("product/home.jsp").forward(request,response);
     }
 }

@@ -57,7 +57,7 @@
                         <td>${user.contact}</td>
                         <td>${user.createdAt}</td>
                         <td>
-                            <a class="btn btn-primary" href="edit?id=${user.id}"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
+                            <a class="btn btn-primary" href="${pageContext.servletContext.contextPath}/admin/edit/${user.id}"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
                             <!-- Button trigger modal -->
                             <button type="button" class="btn btn-danger" data-bs-toggle="modal"
                                     data-bs-target="#modal${user.id}">
