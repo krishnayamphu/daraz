@@ -4,7 +4,7 @@
 <head>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <title>Signup User</title>
+    <title>Signin User</title>
 
 </head>
 <body>
@@ -12,19 +12,16 @@
 <%@include file="../nav.jsp"%>
 
 <div class="container">
-    <div class="row justify-content-between py-3">
-        <div class="col"> <h5>Sign In</h5></div>
-    </div>
-
-<div class="row">
-    <div class="col-12">
+<div class="row justify-content-center">
+    <div class="col-6">
+        <h5 class="pt-4">Sign In</h5>
         <form class="row g-3" action="signin" method="post">
             <div class="col-12">${err}</div>
-            <div class="col-md-6">
+            <div class="col-12">
                 <label class="form-label">Ussername</label>
                 <input type="text" class="form-control" name="username" required>
             </div>
-            <div class="col-md-6">
+            <div class="col-12">
                 <label class="form-label">Password</label>
                 <input type="password" class="form-control" name="password" required>
             </div>

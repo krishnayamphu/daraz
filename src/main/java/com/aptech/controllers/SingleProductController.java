@@ -17,11 +17,8 @@ import java.util.List;
 public class SingleProductController extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         int id=Integer.parseInt(request.getParameter("id"));
-        PrintWriter pw=response.getWriter();
-
         HttpSession session=request.getSession();
-//        String user=(String)session.getAttribute("user");
-        String user="";
+        String user=(String)session.getAttribute("user");
 
         Product product= ProductDao.getProductById(id);
         request.setAttribute("product",product);

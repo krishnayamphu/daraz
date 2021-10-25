@@ -27,7 +27,6 @@
                     <div class="input-group mb-3">
                         <button type="submit" class="btn btn-primary mb-3">Buy Now</button>
                         <button type="button" onclick="getUser('${user}')" class="btn btn-danger mb-3">Add to Cart</button>
-                   ${user}
                     </div>
                 </form>
             </div>
@@ -41,7 +40,7 @@
             </div>
 
         </div>
-        <div class="col-3">df</div>
+        <div class="col-3"></div>
     </div>
 </div>
 

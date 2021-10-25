@@ -26,6 +26,10 @@
                         </li>
                     </c:when>
                     <c:otherwise>
+                        <li class="nav-item">
+                            <a class="nav-link" href="signup"><i class="fa fa-shopping-cart"></i> Cart
+                                <span class="bg-warning rounded-pill text-white px-2">0</span></a>
+                        </li>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
                                data-bs-toggle="dropdown" aria-expanded="false">

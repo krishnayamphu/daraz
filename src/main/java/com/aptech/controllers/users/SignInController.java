@@ -18,15 +18,16 @@ public class SignInController extends HttpServlet {
         String password = request.getParameter("password");
         String username = request.getParameter("username");
         User user=new User();
-        user.setPassword(password);
+        user.setPassword(DigestUtils.sha256Hex(password));
         user.setUsername(username);
         if(UserDao.auth(user)){
             HttpSession session=request.getSession();
             session.setAttribute("user",username);
+            request.getRequestDispatcher("/").forward(request,response);
         }else{
-            String msg = "<div class='alert alert-danger'> password do not match</div>";
+            String msg = "<div class='alert alert-danger'> Invalid username or password</div>";
             request.setAttribute("err", msg);
-            request.getRequestDispatcher("/user/signup.jsp").include(request, response);
+            request.getRequestDispatcher("/user/signin.jsp").include(request, response);
         }
     }
 
