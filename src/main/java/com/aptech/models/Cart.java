@@ -12,6 +12,13 @@ public class Cart {
     public Cart() {
     }
 
+    public Cart(int productId, int userId, int qty, double total) {
+        this.productId = productId;
+        this.userId = userId;
+        this.qty = qty;
+        this.total = total;
+    }
+
     public int getId() {
         return id;
     }

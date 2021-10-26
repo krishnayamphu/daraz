@@ -18,15 +18,18 @@
                 <h3 class="text-uppercase">${product.name}</h3>
                 <p class="card-text">${product.salesPrice}</p>
                 <p class="card-text"><del>${product.regularPrice}</del></p>
-                <form action="">
-                    <input type="hidden" name="id" value="${product.id}">
+                <form method="post" id="myCartForm" action="/daraz/cart">
+                    <input type="hidden" name="pid" value="${product.id}">
                     <div class="input-group mb-3">
                         <span class="input-group-text">Quantity</span>
-                        <input type="number" value="1" class="form-control" aria-label="Amount (to the nearest dollar)">
+                        <input type="number" name="qty" value="1" class="form-control" aria-label="Amount (to the nearest dollar)">
                     </div>
                     <div class="input-group mb-3">
-                        <button type="submit" class="btn btn-primary mb-3">Buy Now</button>
-                        <button type="button" onclick="getUser('${user}')" class="btn btn-danger mb-3">Add to Cart</button>
+                        <button type="button" class="btn btn-primary mb-3">Buy Now</button>
+<%--                        <button type="button" onclick="getUser('${user}')" class="btn btn-danger mb-3">Add to Cart</button>--%>
+                        <button type="submit" class="btn btn-danger mb-3">Add to Cart</button>
+
+
                     </div>
                 </form>
             </div>
@@ -38,7 +41,6 @@
                     </p>
                 </div>
             </div>
-
         </div>
         <div class="col-3"></div>
     </div>
@@ -53,8 +55,7 @@ function getUser(user) {
         window.location.replace("http://localhost:8080/daraz/signin");
         console.log(user)
     }else{
-        alert("working");
-        console.log(user)
+        document.getElementById("myCartForm").submit();
     }
 
 }

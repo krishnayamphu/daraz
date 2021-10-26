@@ -10,22 +10,22 @@ public class DatabaseSeeder {
         AdminTable.defaultData();
         UserTable.createTable();
         UserTable.defaultData();
-
+        CartTable.createTable();
 //        CreateCategoryTable.createTabe();
 //        CreateInventoryTable.createTable();
 //        CreateDiscountTable.createTable();
 //        CreateProductTable.createTable();
-        CartTable.createTable();
+
     }
 
     public static void destroy() {
         AdminTable.dropTable();
         UserTable.dropTable();
-
+        CartTable.dropTable();
 //        CreateProductTable.dropTable();
 //        CreateCategoryTable.dropTable();
 //        CreateInventoryTable.dropTable();
 //        CreateDiscountTable.dropTable();
-        CartTable.dropTable();
+
     }
 }

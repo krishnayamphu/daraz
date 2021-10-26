@@ -27,7 +27,7 @@ public class SignInController extends HttpServlet {
             //set global CurrentUser object
             this.getServletConfig().getServletContext().setAttribute("CurrentUser", CurrentUser);
 
-            response.sendRedirect(getServletContext().getContextPath());
+            response.sendRedirect("/daraz/home");
         } else {
             String msg = "Invalid username or password.";
             request.setAttribute("err", msg);

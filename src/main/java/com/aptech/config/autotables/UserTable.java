@@ -23,7 +23,7 @@ public class UserTable {
     public static void dropTable() {
         try {
             Connection con = ConnectDB.connect();
-            String sql = "DROP TABLE users";
+            String sql = "DROP TABLE IF EXISTS users";
             PreparedStatement ps = con.prepareStatement(sql);
             if(ps.executeUpdate()==1){
                 System.out.println("dropped users table.");
