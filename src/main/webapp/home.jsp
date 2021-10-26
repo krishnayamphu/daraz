@@ -16,13 +16,16 @@
                 <div class="card">
                     <a href="${pageContext.servletContext.contextPath}/single?id=${product.id}">
                     <img src="${pageContext.servletContext.contextPath}/uploads/${product.image}" class="card-img-top" alt="${file.getName()}">
+                    </a>
                     <div class="card-body">
+                        <a href="${pageContext.servletContext.contextPath}/single?id=${product.id}">
+
                         <h5 class="card-title">${product.name}</h5>
+                        </a>
                         <p class="card-text">${product.salesPrice}</p>
-                        <p class="card-text"><del>${product.regularPrice}</del></p>
+                        <p class="card-text text-muted"><del>${product.regularPrice}</del></p>
 <%--                        <a href="#" class="btn btn-primary">Go somewhere</a>--%>
                     </div>
-                    </a>
                 </div>
             </div>
         </c:forEach>

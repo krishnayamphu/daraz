@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-success">
     <div class="container">
-        <a class="navbar-brand" href="/darazz">DARAZZ</a>
+        <a class="navbar-brand" href="${rootPath}">DARAZZ</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
                 aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -8,7 +8,7 @@
         <div class="collapse navbar-collapse justify-content-between" id="navbarSupportedContent">
             <ul class="navbar-nav mb-2 mb-lg-0">
                 <li class="nav-item">
-                    <a class="nav-link" href="/darazz">Home</a>
+                    <a class="nav-link" href="${rootPath}">Home</a>
                 </li>
             </ul>
             <form class="d-flex mb-0">
@@ -19,15 +19,15 @@
                 <c:choose>
                     <c:when test="${sessionScope.user==null}">
                         <li class="nav-item">
-                            <a class="nav-link" href="signin">Sign in</a>
+                            <a class="nav-link" href="${rootPath}/signin">Sign in</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="signup">Sign up</a>
+                            <a class="nav-link" href="${rootPath}/signup">Sign up</a>
                         </li>
                     </c:when>
                     <c:otherwise>
                         <li class="nav-item">
-                            <a class="nav-link" href="signup"><i class="fa fa-shopping-cart"></i> Cart
+                            <a class="nav-link" href="${rootPath}/"><i class="fa fa-shopping-cart"></i> Cart
                                 <span class="bg-warning rounded-pill text-white px-2">0</span></a>
                         </li>
                         <li class="nav-item dropdown">
@@ -36,13 +36,13 @@
                                     ${CurrentUser.getFirstname()} ${CurrentUser.getLastname()}
                             </a>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <li><a class="dropdown-item" href="user/profile">Profile</a></li>
-                                <li><a class="dropdown-item" href="user/order">My Orders</a></li>
+                                <li><a class="dropdown-item" href="${rootPath}/user/profile">Profile</a></li>
+                                <li><a class="dropdown-item" href="${rootPath}/user/order">My Orders</a></li>
                                 <li>
                                     <hr class="dropdown-divider">
                                 </li>
                                 <li>
-                                    <form id="usrform" action="/darazz/signout" method="post">
+                                    <form id="usrform" action="${rootPath}/signout" method="post">
                                         <a class="dropdown-item" href="javascript:0"
                                            onclick="document.getElementById('usrform').submit();">Sign out</a>
                                     </form>

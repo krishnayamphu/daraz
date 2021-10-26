@@ -9,10 +9,10 @@
             <div class="accordion-body">
                 <ul class="nav flex-column">
                     <li class="nav-item">
-                        <a class="nav-link" aria-current="page" href="products">All Products</a>
+                        <a class="nav-link" aria-current="page" href="${rootPath}/admin/products">All Products</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="product-add">Add Product</a>
+                        <a class="nav-link" href="${rootPath}/admin/product-add">Add Product</a>
                     </li>
                 </ul>
             </div>
@@ -28,10 +28,10 @@
             <div class="accordion-body">
                 <ul class="nav flex-column">
                     <li class="nav-item">
-                        <a class="nav-link" aria-current="page" href="category">All Categories</a>
+                        <a class="nav-link" aria-current="page" href="${rootPath}/admin/category">All Categories</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="category-add">Add Category</a>
+                        <a class="nav-link" href="${rootPath}/admin/category-add">Add Category</a>
                     </li>
                 </ul>
             </div>
@@ -47,7 +47,7 @@
             <div class="accordion-body">
                 <ul class="nav flex-column">
                     <li class="nav-item">
-                        <a class="nav-link" aria-current="page" href="${pageContext.servletContext.contextPath}/media">All Media</a>
+                        <a class="nav-link" aria-current="page" href="${rootPath}/media">All Media</a>
                     </li>
                 </ul>
             </div>
@@ -63,7 +63,7 @@
             <div class="accordion-body">
                 <ul class="nav flex-column">
                     <li class="nav-item">
-                        <a class="nav-link" aria-current="page" href="inventory">View Inventory</a>
+                        <a class="nav-link" aria-current="page" href="${rootPath}/admin/inventory">View Inventory</a>
                     </li>
 
                 </ul>
@@ -80,10 +80,10 @@
             <div class="accordion-body">
                 <ul class="nav flex-column">
                     <li class="nav-item">
-                        <a class="nav-link" aria-current="page" href="discounts">All Discounts</a>
+                        <a class="nav-link" aria-current="page" href="${rootPath}/admin/discounts">All Discounts</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="discount-add">Add Discount</a>
+                        <a class="nav-link" href="${rootPath}/admin/discount-add">Add Discount</a>
                     </li>
                 </ul>
             </div>
@@ -99,10 +99,10 @@
             <div class="accordion-body">
                 <ul class="nav flex-column">
                     <li class="nav-item">
-                        <a class="nav-link" aria-current="page" href="users">All Users</a>
+                        <a class="nav-link" aria-current="page" href="${rootPath}/admin/users">All Users</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="user-add">Add User</a>
+                        <a class="nav-link" href="${rootPath}/admin/user-add">Add User</a>
                     </li>
                 </ul>
             </div>

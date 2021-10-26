@@ -1,4 +1,4 @@
-package com.aptech.controllers.users;
+package com.aptech.controllers.auth;
 
 import com.aptech.dao.UserDao;
 import com.aptech.models.User;
@@ -20,19 +20,23 @@ public class SignInController extends HttpServlet {
         User user=new User();
         user.setPassword(DigestUtils.sha256Hex(password));
         user.setUsername(username);
-        if(UserDao.auth(user)){
-            HttpSession session=request.getSession();
-            session.setAttribute("user",username);
-            request.getRequestDispatcher("/").forward(request,response);
-        }else{
-            String msg = "<div class='alert alert-danger'> Invalid username or password</div>";
+        if (UserDao.auth(user)) {
+            HttpSession session = request.getSession();
+            session.setAttribute("user", username);
+            User CurrentUser=UserDao.getUserByUsername(username);
+            //set global CurrentUser object
+            this.getServletConfig().getServletContext().setAttribute("CurrentUser", CurrentUser);
+
+            response.sendRedirect(getServletContext().getContextPath());
+        } else {
+            String msg = "Invalid username or password.";
             request.setAttribute("err", msg);
-            request.getRequestDispatcher("/user/signin.jsp").include(request, response);
+            request.getRequestDispatcher("/auth/signin.jsp").include(request, response);
         }
     }
 
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        request.getRequestDispatcher("/user/signin.jsp").forward(request, response);
+        request.getRequestDispatcher("/auth/signin.jsp").forward(request, response);
     }
 }

@@ -11,6 +11,8 @@
 <body>
 
 
+<%@include file="../admin/nav.jsp"%>
+
 <div class="container">
     <div class="row justify-content-between py-3">
         <div class="col"><h5>All Media</h5></div>
@@ -23,7 +25,7 @@
     </div>
     <div class="row">
         <div class="col-3">
-
+            <%@include file="../admin/sidebar.jsp" %>
         </div>
         <div class="col-9">
             <form  class="row g-3" method="POST" enctype="multipart/form-data" action="media">

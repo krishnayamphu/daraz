@@ -9,9 +9,9 @@
 <body>
 <%@include file="nav.jsp"%>
 <div class="container">
-    <div class="row">
+    <div class="row mt-5">
         <div class="col-3">
-            <img class="img-fluid" src="${pageContext.servletContext.contextPath}/uploads/${product.image}" alt="${product.image}">
+            <img class="img-fluid" src="${rootPath}/uploads/${product.image}" alt="${product.image}">
         </div>
         <div class="col-6">
             <div class="row">

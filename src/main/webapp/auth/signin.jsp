@@ -16,7 +16,9 @@
     <div class="col-6">
         <h5 class="pt-4">Sign In</h5>
         <form class="row g-3" action="signin" method="post">
-            <div class="col-12">${err}</div>
+            <div class="col-12">
+                <%@include file="../include/error.jsp"%>
+            </div>
             <div class="col-12">
                 <label class="form-label">Ussername</label>
                 <input type="text" class="form-control" name="username" required>
