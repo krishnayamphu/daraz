@@ -6,7 +6,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
-public class CreateProductTable {
+public class ProductTable {
     public static void createTable() {
         try{
             Connection con = ConnectDB.connect();

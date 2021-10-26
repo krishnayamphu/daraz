@@ -6,14 +6,14 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
-public class CreateCategoryTable {
+public class InventoryTable {
     public static void createTable() {
-        try {
+        try{
             Connection con = ConnectDB.connect();
-            String sql = "CREATE TABLE category (id int PRIMARY KEY AUTO_INCREMENT,name varchar(30) unique not null,description text,created_at timestamp DEFAULT CURRENT_TIMESTAMP,updated_at timestamp DEFAULT CURRENT_TIMESTAMP)";
+            String sql = "CREATE TABLE inventory (id int PRIMARY KEY AUTO_INCREMENT,quantity int,created_at timestamp DEFAULT CURRENT_TIMESTAMP,updated_at timestamp DEFAULT CURRENT_TIMESTAMP)";
             PreparedStatement ps = con.prepareStatement(sql);
             ps.executeUpdate();
-            System.out.println("category table created.");
+            System.out.println("inventory table created.");
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -22,10 +22,10 @@ public class CreateCategoryTable {
     public static void dropTable() {
         try {
             Connection con = ConnectDB.connect();
-            String sql = "DROP TABLE category";
+            String sql = "DROP TABLE inventory";
             PreparedStatement ps = con.prepareStatement(sql);
             ps.executeUpdate();
-            System.out.println("dropped category table.");
+            System.out.println("dropped inventory table.");
         } catch (SQLException e) {
             e.printStackTrace();
         }
