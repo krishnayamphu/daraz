@@ -12,38 +12,30 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
 
-@WebServlet("/cart")
-public class CartController extends HttpServlet {
+@WebServlet("/cart-del")
+public class CartDelController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        PrintWriter pw=response.getWriter();
         User user=(User)getServletContext().getAttribute("CurrentUser");
         int uid=user.getId();
         int pid=Integer.parseInt(request.getParameter("pid"));
-        int qty=Integer.parseInt(request.getParameter("qty"));
-        Product product=ProductDao.getProductById(pid);
-        double price=product.getSalesPrice();
-        double total=price*qty;
-        Cart cart=new Cart(pid,uid,qty,total);
-        if(CartDao.addCartItem(cart)){
+        Cart cart=new Cart();
+        cart.setProductId(pid);
+        cart.setUserId(uid);
+        if(CartDao.delCartItem(cart)){
             //set global CartCount var
             this.getServletConfig().getServletContext().setAttribute("cartCount", CartDao.getTotalCartItem(uid));
+            String msg = "Item deleted successfully.";
+            request.setAttribute("msg", msg);
             response.sendRedirect("/daraz/cart");
         }else{
-            System.out.println("something error");
+            String msg = "Error while deleting item.";
+            request.setAttribute("err", msg);
+            response.sendRedirect("/daraz/cart");
         }
-    }
-
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        int uid=1;
-        List<CartItem> cartItems=CartDao.getAllCartItems(uid);
-        request.setAttribute("pageTitle","All Cart Items");
-        request.setAttribute("cartItems",cartItems);
-        request.getRequestDispatcher("cart.jsp").forward(request,response);
     }
 }

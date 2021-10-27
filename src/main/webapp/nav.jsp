@@ -12,8 +12,8 @@
                 </li>
             </ul>
             <form class="d-flex mb-0">
-                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                <button class="btn btn-primary" type="submit">Search</button>
+                <input class="form-control search-box me-2" type="search" placeholder="Search">
+                <button class="btn btn-search" type="submit">Search</button>
             </form>
             <ul class="navbar-nav mb-2 mb-lg-0">
                 <c:choose>
@@ -27,8 +27,8 @@
                     </c:when>
                     <c:otherwise>
                         <li class="nav-item">
-                            <a class="nav-link" href="${rootPath}/"><i class="fa fa-shopping-cart"></i> Cart
-                                <span class="bg-warning rounded-pill text-white px-2">0</span></a>
+                            <a class="nav-link" href="${rootPath}/cart"><i class="fa fa-shopping-cart"></i> Cart
+                                <span class="bg-warning rounded-pill text-white px-2">${cartCount}</span></a>
                         </li>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"

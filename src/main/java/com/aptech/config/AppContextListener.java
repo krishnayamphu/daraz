@@ -7,12 +7,13 @@ import javax.servlet.annotation.WebListener;
 
 @WebListener
 public class AppContextListener implements ServletContextListener {
+    private ServletContext context;
     @Override
     public void contextInitialized(ServletContextEvent sce) {
-        ServletContext context = sce.getServletContext();
+        context = sce.getServletContext();
         context.setAttribute("rootPath", context.getContextPath());
-        System.out.println(context.getContextPath());
         DatabaseSeeder.create();
+        Bootstrap.load(context);
     }
 
     @Override

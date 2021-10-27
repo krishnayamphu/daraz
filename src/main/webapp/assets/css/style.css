@@ -1,0 +1,15 @@
+.btn-search{
+    color: #fff;
+    background-color: #3eab78;
+    border-color: #3eab78;
+}
+.search-box{
+    color:white;
+    background-color: #93c6ae;
+    border: 1px solid #198754;
+}
+
+::placeholder {
+    color: #93c6ae;
+    opacity: 1; /* Firefox */
+}

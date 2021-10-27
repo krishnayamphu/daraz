@@ -22,7 +22,7 @@ public class CartTable {
     public static void dropTable() {
         try {
             Connection con = ConnectDB.connect();
-            String sql = "DROP TABLE IF EXISTS cart";
+            String sql = "DROP TABLE cart";
             PreparedStatement ps = con.prepareStatement(sql);
             if(ps.executeUpdate()==1){
                 System.out.println("dropped cart table.");

@@ -13,8 +13,9 @@ import java.io.IOException;
 @WebServlet("/single")
 public class SingleProductController extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-//        int id=Integer.parseInt(request.getParameter("id"));
-        Product product= ProductDao.getProductById(5);
+        int pid=Integer.parseInt(request.getParameter("pid"));
+        Product product= ProductDao.getProductById(pid);
+        request.setAttribute("pageTitle",product.getName());
         request.setAttribute("product",product);
         request.getRequestDispatcher("single.jsp").forward(request,response);
     }

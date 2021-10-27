@@ -2,9 +2,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <title>Darazz - Home</title>
-
+    <%@include file="include/head.jsp"%>
 </head>
 <body>
 <%@include file="nav.jsp"%>
@@ -14,11 +12,11 @@
         <c:forEach var="product" items="${products}">
             <div class="col">
                 <div class="card">
-                    <a href="${pageContext.servletContext.contextPath}/single?id=${product.id}">
-                    <img src="${pageContext.servletContext.contextPath}/uploads/${product.image}" class="card-img-top" alt="${file.getName()}">
+                    <a href="${rootPath}/single?id=${product.id}">
+                    <img src="${rootPath}/uploads/${product.image}" class="card-img-top" alt="${file.getName()}">
                     </a>
                     <div class="card-body">
-                        <a href="${pageContext.servletContext.contextPath}/single?id=${product.id}">
+                        <a href="${rootPath}/single?pid=${product.id}">
 
                         <h5 class="card-title">${product.name}</h5>
                         </a>
