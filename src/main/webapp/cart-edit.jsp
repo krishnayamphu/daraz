@@ -7,6 +7,7 @@
 <body>
 <%@include file="nav.jsp"%>
 <div class="container">
+    <h5>Update Item</h5>
     <div class="row mt-5">
         <div class="col-3">
             <img class="img-fluid" src="${rootPath}/uploads/${product.image}" alt="${product.image}">
@@ -17,23 +18,15 @@
                 <p class="card-text"><strong>${product.salesPrice}</strong> <del>${product.regularPrice}</del></p>
                 <p class="card-text"></p>
             </div>
-            <form action="cart" method="post">
+            <form action="${rootPath}/cart-edit" method="post">
                 <input type="hidden" name="pid" value="${product.id}">
+                <input type="hidden" name="price" value="${product.salesPrice}">
                 <div class="input-group mb-4">
                     <span class="input-group-text">Quantity</span>
-                    <input type="number" name="qty" value="1" class="form-control">
+                    <input type="number" name="qty" value="${cart.qty}" class="form-control">
                 </div>
                 <div class="input-group mb-3">
-                    <button type="button" class="btn btn-primary mb-3">Buy Now</button>
-                    <c:choose>
-                        <c:when test="${isSET}">
-                            <c:redirect url="cart-edit?pid=${product.id}"/>
-                        </c:when>
-                        <c:otherwise>
-                            <button type="submit" class="btn btn-danger mb-3">Add to Cart</button>
-                        </c:otherwise>
-                    </c:choose>
-
+                    <button type="submit" class="btn btn-danger mb-3">Update Cart</button>
                 </div>
             </form>
         </div>

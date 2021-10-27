@@ -3,7 +3,7 @@
 <%@ page session="false" %>
 <html>
 <head>
-    <title>Darazz - Home</title>
+    <%@include file="include/head.jsp"%>
 </head>
 <body>
 <c:redirect url="/home"/>

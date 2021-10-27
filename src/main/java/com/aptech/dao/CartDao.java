@@ -3,7 +3,6 @@ package com.aptech.dao;
 import com.aptech.helpers.ConnectDB;
 import com.aptech.models.Cart;
 import com.aptech.models.CartItem;
-import com.aptech.models.User;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -13,6 +12,29 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CartDao {
+    public static Cart getCartById(int userId,int productId) {
+        Cart cart = null;
+        try {
+            Connection con = ConnectDB.connect();
+            String sql = "SELECT * FROM cart WHERE user_id=? AND product_id=?";
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setInt(1, userId);
+            ps.setInt(2, productId);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                cart = new Cart();
+                cart.setId(rs.getInt("id"));
+                cart.setUserId(rs.getInt("user_id"));
+                cart.setProductId(rs.getInt("product_id"));
+                cart.setQty(rs.getInt("qty"));
+                cart.setTotal(rs.getDouble("total"));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return cart;
+    }
+
     public static int getTotalCartItem(int userId) {
         int count = 0;
         try {
@@ -48,6 +70,24 @@ public class CartDao {
         return cartItems;
     }
 
+    public static boolean cartItemCheck(int userId,int productId) {
+        boolean status=false;
+        try {
+            Connection con = ConnectDB.connect();
+            String sql = "SELECT cart.product_id FROM cart WHERE  user_id=? AND product_id=?";
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setInt(1, userId);
+            ps.setInt(2,productId);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+               status=true;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return status;
+    }
+
     public static boolean addCartItem(Cart cart) {
         boolean status = false;
         try {
@@ -75,6 +115,25 @@ public class CartDao {
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setInt(1, cart.getProductId());
             ps.setInt(2,cart.getUserId());
+            if (ps.executeUpdate() == 1) {
+                status = true;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return status;
+    }
+
+    public static boolean updateCartItem(Cart cart) {
+        boolean status = false;
+        try {
+            Connection con = ConnectDB.connect();
+            String sql = "UPDATE cart SET qty=?, total=? WHERE user_id=? AND product_id=?";
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setInt(1, cart.getQty());
+            ps.setDouble(2, cart.getTotal());
+            ps.setInt(3, cart.getUserId());
+            ps.setInt(4, cart.getProductId());
             if (ps.executeUpdate() == 1) {
                 status = true;
             }

@@ -31,7 +31,7 @@
                 <td>${item.getQty()}</td>
                 <td>${item.getTotal()}</td>
                 <td>
-                    <a class="btn btn-primary" href="single?pid=${item.getProductId()}">
+                    <a class="btn btn-primary" href="cart-edit?pid=${item.getProductId()}">
                         <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
                     </a>
                     <!-- Button trigger modal -->
