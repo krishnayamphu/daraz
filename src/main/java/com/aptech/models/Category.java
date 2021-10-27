@@ -15,6 +15,12 @@ public class Category {
         this.description = description;
     }
 
+    public Category(int id, String name, String description) {
+        this.id = id;
+        this.name = name;
+        this.description = description;
+    }
+
     public Category(int id, String name, String description, String createdAt, String updatedAt) {
         this.id = id;
         this.name = name;
