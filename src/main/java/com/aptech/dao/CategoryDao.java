@@ -55,8 +55,13 @@ public class CategoryDao {
             PreparedStatement ps=con.prepareStatement(sql);
             ps.setString(1,category.getName());
             ps.setString(2,category.getDescription());
+           // ResultSet rs=ps.getGeneratedKeys();
             if(ps.executeUpdate()==1){
                 status=true;
+//                if(rs.next()){
+//                    int id=rs.getInt(1);
+//                    System.out.println(id);
+//                }
             }
         }catch (SQLException e){
             System.err.println(e);

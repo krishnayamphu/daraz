@@ -3,6 +3,7 @@ package com.aptech.dao;
 import com.aptech.helpers.ConnectDB;
 import com.aptech.models.Cart;
 import com.aptech.models.CartItem;
+import com.aptech.models.Order;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -11,7 +12,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CartDao {
+public class OrderDao {
     public static Cart getCartById(int userId,int productId) {
         Cart cart = null;
         try {
@@ -105,16 +106,15 @@ public class CartDao {
         return status;
     }
 
-    public static boolean addCartItem(Cart cart) {
+    public static boolean addOrderItem(Order order) {
         boolean status = false;
         try {
             Connection con = ConnectDB.connect();
-            String sql = "INSERT INTO cart VALUES(null,?,?,?,?,null,null)";
+            String sql = "INSERT INTO orders (user_id,name,total_amount) VALUES(?,?,?)";
             PreparedStatement ps = con.prepareStatement(sql);
-            ps.setInt(1, cart.getProductId());
-            ps.setInt(2, cart.getUserId());
-            ps.setInt(3, cart.getQty());
-            ps.setDouble(4, cart.getTotal());
+            ps.setInt(1, order.getUserId());
+            ps.setString(2, order.getName());
+            ps.setDouble(3, order.getTotalAmount());
             if (ps.executeUpdate() == 1) {
                 status = true;
             }

@@ -42,8 +42,10 @@ public class CartController extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         int uid=1;
         List<CartItem> cartItems=CartDao.getAllCartItems(uid);
+        double subTotal=CartDao.getSubTotal(uid);
         request.setAttribute("pageTitle","All Cart Items");
         request.setAttribute("cartItems",cartItems);
+        request.setAttribute("subTotal",subTotal);
         request.getRequestDispatcher("cart.jsp").forward(request,response);
     }
 }

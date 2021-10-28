@@ -22,7 +22,7 @@ public class CategoryAddController extends HttpServlet {
             request.getSession().setAttribute("success", msg);
             response.sendRedirect("category");
         }else{
-            String msg = " <div class='alert alert-success'>Error while adding new category</div>";
+            String msg = " <div class='alert alert-warning'>Error while adding new category</div>";
             request.getSession().setAttribute("err", msg);
             request.getRequestDispatcher("category/add.jsp").include(request, response);
         }
