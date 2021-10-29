@@ -4,10 +4,7 @@ package com.aptech.dao;
 import com.aptech.helpers.ConnectDB;
 import com.aptech.models.Category;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -47,26 +44,26 @@ public class CategoryDao {
         return categories;
     }
 
-    public static boolean addCategory(Category category){
-        boolean status=false;
+    public static int addCategory(Category category){
+        int generatedKey=-1;
         try {
             Connection con = ConnectDB.connect();
             String sql = "INSERT INTO category VALUES(null,?,?,null,null)";
-            PreparedStatement ps=con.prepareStatement(sql);
+            PreparedStatement ps=con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             ps.setString(1,category.getName());
             ps.setString(2,category.getDescription());
-           // ResultSet rs=ps.getGeneratedKeys();
             if(ps.executeUpdate()==1){
-                status=true;
-//                if(rs.next()){
-//                    int id=rs.getInt(1);
-//                    System.out.println(id);
-//                }
+                ResultSet rs=ps.getGeneratedKeys();
+                if(rs.next()){
+                    generatedKey=rs.getInt(1);
+                }
             }
         }catch (SQLException e){
             System.err.println(e);
+        }finally {
+            return generatedKey;
         }
-        return status;
+
     }
 
     public static boolean updateCategory(Category category){

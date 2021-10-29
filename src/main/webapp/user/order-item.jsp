@@ -1,3 +1,5 @@
+<%@ page import="com.aptech.models.Product" %>
+<%@ page import="com.aptech.dao.ProductDao" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
@@ -9,21 +11,23 @@
 <div class="container">
     <div class="row">
         <div class="col-8">
-            <h5 class="py-3">My Orders</h5>
+            <h5 class="py-3">Order Item Details</h5>
             <%@include file="../include/success.jsp" %>
             <%@include file="../include/error.jsp" %>
-            <c:forEach var="item" items="${orders}">
+            <c:forEach var="item" items="${order.getAllOrderItemsByOrderId(order.getId())}">
             <table class="table table-bordered">
                 <thead>
                 <tr>
-                    <th>Order #<a href="${rootPath}/orderItem?id=${item.getId()}">${item.getId()}</a></th>
-                    <th>PAY NOW/MANAGE</th>
+                   <th colspan="2">Product Details</th>
                 </tr>
                 </thead>
                 <tbody>
                     <tr>
-                        <td>${item.getName()}</td>
-                        <td>${item.getTotalAmount()}</td>
+                        <c:set var="product" scope="request" value="${ProductDao.getProductById(item.getProductId())}"/>
+
+                        <td>${product.getName()}</td>
+                        <td>Rs. ${item.getPrice()}</td>
+                        <td><span class="text-muted">Qty:</span> ${item.getQty()}</td>
                     </tr>
                 </tbody>
             </table>

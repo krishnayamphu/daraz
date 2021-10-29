@@ -141,6 +141,22 @@ public class CartDao {
         return status;
     }
 
+    public static boolean delCartItemByUserId(int userId) {
+        boolean status = false;
+        try {
+            Connection con = ConnectDB.connect();
+            String sql = "DELETE FROM cart WHERE user_id=?";
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setInt(1, userId);
+            if (ps.executeUpdate() == 1) {
+                status = true;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return status;
+    }
+
     public static boolean updateCartItem(Cart cart) {
         boolean status = false;
         try {

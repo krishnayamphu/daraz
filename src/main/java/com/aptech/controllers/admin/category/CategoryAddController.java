@@ -17,7 +17,7 @@ public class CategoryAddController extends HttpServlet {
         String desc=request.getParameter("desc");
 
         Category category=new Category(name,desc);
-        if(CategoryDao.addCategory(category)){
+        if(CategoryDao.addCategory(category)!=-1){
             String msg = " <div class='alert alert-success'>Category Added !</div>";
             request.getSession().setAttribute("success", msg);
             response.sendRedirect("category");

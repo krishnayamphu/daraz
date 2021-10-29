@@ -7,11 +7,9 @@
 <body>
 <%@include file="nav.jsp" %>
 <div class="container">
-    <h5 class="py-3">All Items</h5>
-
-
     <div class="row">
-        <div class="col-9">
+        <div class="col-8">
+            <h5 class="py-3">All Items</h5>
             <table class="table table-bordered">
                 <%@include file="include/success.jsp" %>
                 <%@include file="include/error.jsp" %>
@@ -75,10 +73,17 @@
                 </tbody>
             </table>
         </div>
-        <div class="col-3">
-            <h3>Order Summary</h3>
+        <div class="col-4">
+            <h5 class="pt-3 text-muted">Order Summary</h5>
             <form action="${rootPath}/order" method="post">
-                <table table table-bordered>
+                <c:forEach var="item" items="${cartItems}">
+                    <input type="hidden" name="pid" value="${item.getProductId()}">
+                    <input type="hidden" name="price" value="${item.getPrice()}">
+                    <input type="hidden" name="qty" value="${item.getQty()}">
+
+
+                </c:forEach>
+                <table class="table table-borderless">
                     <tr>
                         <td>Subtotal (${cartCount} items)</td>
                         <td>Rs. ${subTotal}</td>
@@ -88,9 +93,10 @@
                         <td> Rs. 237</td>
                     </tr>
                     <tr>
-                        <td><input type="text" placeholder="Enter discount code"></td>
+                        <td><input class="form-control form-control-sm" type="text" placeholder="Enter discount code">
+                        </td>
                         <td>
-                            <button class="btn btn-info">Apply</button>
+                            <button class="btn btn-sm btn-info w-100">Apply</button>
                         </td>
                     </tr>
                     <tr>
@@ -102,16 +108,9 @@
                     </tr>
                     <tr>
                         <td colspan="2">
-                            <button class="btn btn-primary" type="submit">PROCEED TO CHECKOUT</button>
+                            <button class="btn btn-sm btn-success w-100" type="submit">PROCEED TO CHECKOUT</button>
                         </td>
                     </tr>
-                    <hr>
-                    <div class="row">
-                        <div class="col-12">
-                            <label class="form-label">Fullname</label>
-                            <input type="text" class="form-control" name="name" required>
-                        </div>
-                    </div>
                 </table>
             </form>
         </div>
