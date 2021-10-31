@@ -1,5 +1,7 @@
 package com.aptech.models;
 
+import com.aptech.dao.ProductDao;
+
 public class OrderItem {
     private int id;
     private int orderId;
@@ -64,5 +66,10 @@ public class OrderItem {
 
     public void setQty(int qty) {
         this.qty = qty;
+    }
+
+    public Product getProduct(){
+        Product product= ProductDao.getProductById(getProductId());
+        return product;
     }
 }

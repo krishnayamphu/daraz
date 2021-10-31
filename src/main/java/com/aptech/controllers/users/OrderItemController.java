@@ -27,10 +27,11 @@ public class OrderItemController extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         int orderId=Integer.parseInt(request.getParameter("id"));
         Order order=OrderDao.getOrderItemById(orderId);
-
+        List<OrderItem> orderItems=OrderItemDao.getAllOrderItemsByOrderId(orderId);
 
         request.setAttribute("pageTitle","All Ordered Items");
         request.setAttribute("order",order);
+        request.setAttribute("orderItems",orderItems);
         request.getRequestDispatcher("/user/order-item.jsp").forward(request, response);
     }
 }

@@ -17,6 +17,9 @@
 
             <ul class="navbar-nav mb-2 mb-lg-0">
                 <li class="nav-item">
+                    <a class="nav-link" aria-current="page" href="${rootPath}/admin/orders">New Order 10</a>
+                </li>
+                <li class="nav-item">
                     <a class="nav-link" aria-current="page" href="${rootPath}/admin">${user}</a>
                 </li>
                 <li class="nav-item">

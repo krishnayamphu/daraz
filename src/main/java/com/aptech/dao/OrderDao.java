@@ -87,4 +87,30 @@ public class OrderDao {
         }
     }
 
+    public static List<Order> getPaidOrders() {
+        List<Order> orders=new ArrayList<>();
+        try {
+            Connection con = ConnectDB.connect();
+            String sql = "SELECT orders.id, orders.user_id, orders.name,orders.email,orders.mobile,orders.address,orders.order_status_id,orders.total_amount, orders.created_at FROM orders LEFT JOIN invoice ON orders.id=invoice.order_id WHERE invoice.status=1";
+
+            PreparedStatement ps = con.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                Order order = new Order();
+                order.setId(rs.getInt("id"));
+                order.setUserId(rs.getInt("user_id"));
+                order.setName(rs.getString("name"));
+                order.setEmail(rs.getString("email"));
+                order.setMobile(rs.getString("mobile"));
+                order.setAddress(rs.getString("address"));
+                order.setOrderStatusId(rs.getInt("order_status_id"));
+                order.setTotalAmount(rs.getDouble("total_amount"));
+                order.setCreatedAt(rs.getString("created_at"));
+                orders.add(order);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return orders;
+    }
 }

@@ -14,17 +14,9 @@ import java.util.List;
 
 public class MainApp {
     public static void main(String[] args) {
-        Order order=OrderDao.getOrderItemById(6);
-
-        System.out.println(order.getName());
-        System.out.println(order.getMobile());
-        System.out.println("====================");
-        for (OrderItem item:order.getAllOrderItemsByOrderId(6)){
-            System.out.println(item.getProductId());
-            System.out.println(item.getPrice());
-            System.out.println(item.getQty());
-            System.out.println("=========================");
-
+        List<Order> orders=OrderDao.getPaidOrders();
+        for(Order order:orders){
+            System.out.println(order.getName());
         }
     }
 }

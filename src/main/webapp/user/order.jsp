@@ -17,7 +17,18 @@
                 <thead>
                 <tr>
                     <th>Order #<a href="${rootPath}/orderItem?id=${item.getId()}">${item.getId()}</a></th>
-                    <th>PAY NOW/MANAGE</th>
+                    <th>
+                        <c:choose>
+                            <c:when test="${item.orderStatusId==1}">
+                                <a href="#">PAY NOW</a>
+                            </c:when>
+                            <c:otherwise>
+                                <a href="#">MANAGE</a>
+                            </c:otherwise>
+                        </c:choose>
+
+
+                    </th>
                 </tr>
                 </thead>
                 <tbody>

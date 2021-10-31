@@ -34,7 +34,7 @@ public class OrderController extends HttpServlet {
         order.setEmail(user.getEmail());
         order.setMobile(user.getContact());
         order.setAddress(user.getAddress());
-        order.setOrderStatusId(1);
+        order.setOrderStatusId(1); //placed
         order.setTotalAmount(total);
         int id=OrderDao.addOrderItem(order);
         if(id!=-1){
@@ -53,7 +53,7 @@ public class OrderController extends HttpServlet {
             }
             CartDao.delCartItemByUserId(user.getId());
             this.getServletConfig().getServletContext().setAttribute("cartCount", CartDao.getTotalCartItem(user.getId()));
-            response.sendRedirect("order");
+            response.sendRedirect("orderItem?id="+id);
         }else {
             String msg = "<div class='alert alert-danger'>Error while ordering product</div>";
             request.getSession().setAttribute("err", msg);

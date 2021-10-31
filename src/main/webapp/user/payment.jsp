@@ -12,10 +12,15 @@
             <h5 class="py-3">Select Payment Method</h5>
             <%@include file="../include/success.jsp" %>
             <%@include file="../include/error.jsp" %>
-            <form action="${rootPath}/order" method="post">
+            <form action="${rootPath}/payment" method="post">
+                <input type="hidden" name="oid" value="${oid}">
                 <div class="form-check form-check-inline">
                     <input class="form-check-input" type="radio" name="pmt" value="1" checked>
                     <label class="form-check-label">Cash on delivery</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="pmt" value="2">
+                    <label class="form-check-label">ESEWA</label>
                 </div>
                 <button type="submit">Confirm Order</button>
             </form>
