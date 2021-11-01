@@ -1,5 +1,4 @@
-<c:if test="${msg!=null}">
-    <div class='alert alert-success'>
-            ${msg}
-    </div>
+<c:if test="${sessionScope.success!=null}">
+    ${sessionScope.success}
+    <c:set var="success" value="" scope="session"/>
 </c:if>

@@ -37,7 +37,7 @@ public class OrderStatusTable {
     public static void defaultData() {
         try {
             Connection con = ConnectDB.connect();
-            String sql = "INSERT INTO orders_status VALUES (null,'Placed'),(null,'On The Way'),(null,'Delivered'),(null,'Cancelled')";
+            String sql = "INSERT INTO orders_status VALUES (null,'Placed'),(null,'In Progress'),(null,'On The Way'),(null,'Delivered'),(null,'Cancellation in Progress'),(null,'Cancelled')";
             PreparedStatement ps = con.prepareStatement(sql);
             ps.executeUpdate();
             System.out.println("default data generated.");

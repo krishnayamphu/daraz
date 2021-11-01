@@ -4,10 +4,7 @@ import com.aptech.dao.CartDao;
 import com.aptech.dao.OrderDao;
 import com.aptech.dao.OrderItemDao;
 import com.aptech.dao.ProductDao;
-import com.aptech.models.Order;
-import com.aptech.models.OrderItem;
-import com.aptech.models.Product;
-import com.aptech.models.User;
+import com.aptech.models.*;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -21,7 +18,25 @@ import java.util.List;
 @WebServlet("/orderItem")
 public class OrderItemController extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        int oid =Integer.parseInt(request.getParameter("oid"));
+        String name=request.getParameter("name");
+        String mobile=request.getParameter("mobile");
+        String email=request.getParameter("email");
+        String address=request.getParameter("address");
 
+        Order order=new Order();
+        order.setId(oid);
+        order.setName(name);
+        order.setEmail(email);
+        order.setMobile(mobile);
+        order.setAddress(address);
+        if(OrderDao.updateOrderItem(order)){
+            response.sendRedirect("payment?oid="+oid);
+        }else {
+            String msg = "<div class='alert alert-danger'>Error while ordering product</div>";
+            request.getSession().setAttribute("err", msg);
+            response.sendRedirect(request.getHeader("referer"));
+        }
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

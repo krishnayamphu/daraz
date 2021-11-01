@@ -1,5 +1,4 @@
-<c:if test="${err!=null}">
-    <div class='alert alert-danger'>
-            ${err}
-    </div>
+<c:if test="${sessionScope.err!=null}">
+    ${sessionScope.err}
+    <c:set var="err" value="" scope="session"/>
 </c:if>

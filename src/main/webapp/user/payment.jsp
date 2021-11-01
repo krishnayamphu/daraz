@@ -9,25 +9,33 @@
 <div class="container">
     <div class="row">
         <div class="col-8">
-            <h5 class="py-3">Select Payment Method</h5>
-            <%@include file="../include/success.jsp" %>
             <%@include file="../include/error.jsp" %>
-            <form action="${rootPath}/payment" method="post">
-                <input type="hidden" name="oid" value="${oid}">
-                <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="radio" name="pmt" value="1" checked>
-                    <label class="form-check-label">Cash on delivery</label>
+            <div class="card mt-5">
+                <div class="card-body">
+                    <h6 class="text-uppercase text-muted mb-3">Select Payment Method</h6>
+                    <form action="${rootPath}/payment" method="post">
+                        <input type="hidden" name="oid" value="${oid}">
+                        <div class="row">
+                            <div class="col-12 mb-3">
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="pmt" value="1" checked>
+                                    <label class="form-check-label">Cash on Delivery</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="pmt" value="2">
+                                    <label class="form-check-label">ESEWA</label>
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <button class="btn btn-success" type="submit">Confirm Order</button>
+                            </div>
+                        </div>
+                    </form>
                 </div>
-                <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="radio" name="pmt" value="2">
-                    <label class="form-check-label">ESEWA</label>
-                </div>
-                <button type="submit">Confirm Order</button>
-            </form>
-
+            </div>
         </div>
         <div class="col-4">
-            <h5 class="pt-3 text-muted">Order Summary</h5>
+            <h5 class="pt-5 text-muted">Order Summary</h5>
             <table class="table table-borderless">
                 <tr>
                     <td>Subtotal (${cartCount} items)</td>

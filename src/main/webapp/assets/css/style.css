@@ -13,3 +13,7 @@
     color: #93c6ae;
     opacity: 1; /* Firefox */
 }
+
+.bg-grey-50{
+    background-color: rgba(130,130,130,0.1);
+}

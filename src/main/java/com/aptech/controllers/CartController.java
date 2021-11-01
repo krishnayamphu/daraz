@@ -40,7 +40,8 @@ public class CartController extends HttpServlet {
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        int uid=1;
+        User user=(User)getServletContext().getAttribute("CurrentUser");
+        int uid=user.getId();
         List<CartItem> cartItems=CartDao.getAllCartItems(uid);
         double subTotal=CartDao.getSubTotal(uid);
         request.setAttribute("pageTitle","All Cart Items");

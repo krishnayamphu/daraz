@@ -25,11 +25,15 @@ public class PaymentController extends HttpServlet {
        if(pmtId==1){
            Invoice invoice=new Invoice(oid,1);
            if(InvoiceDao.addInvoice(invoice)){
-               String msg = " <div class='alert alert-success'>Category Updaated !</div>";
+               Order order=new Order();
+               order.setId(oid);
+               order.setOrderStatusId(2);
+               OrderDao.updateOrderStatusId(order);
+               String msg = " <div class='alert alert-success'>Order Confirmed Successfully !</div>";
                request.getSession().setAttribute("success", msg);
                 response.sendRedirect("order");
            }else {
-               String msg = "<div class='alert alert-danger'>Error while updating category</div>";
+               String msg = "<div class='alert alert-danger'>Error in Payment</div>";
                request.getSession().setAttribute("err", msg);
                response.sendRedirect(request.getHeader("referer"));
            }

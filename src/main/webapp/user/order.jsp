@@ -7,101 +7,72 @@
 <body>
 <%@include file="../nav.jsp" %>
 <div class="container">
+    <h5 class="py-3">My Orders</h5>
+    <%@include file="../include/success.jsp" %>
+    <%@include file="../include/error.jsp" %>
     <div class="row">
-        <div class="col-8">
-            <h5 class="py-3">My Orders</h5>
-            <%@include file="../include/success.jsp" %>
-            <%@include file="../include/error.jsp" %>
+        <div class="col-12">
             <c:forEach var="item" items="${orders}">
-            <table class="table table-bordered">
-                <thead>
-                <tr>
-                    <th>Order #<a href="${rootPath}/orderItem?id=${item.getId()}">${item.getId()}</a></th>
-                    <th>
-                        <c:choose>
-                            <c:when test="${item.orderStatusId==1}">
-                                <a href="#">PAY NOW</a>
-                            </c:when>
-                            <c:otherwise>
-                                <a href="#">MANAGE</a>
-                            </c:otherwise>
-                        </c:choose>
-
-
-                    </th>
-                </tr>
-                </thead>
-                <tbody>
+                <table class="table table-bordered">
+                    <thead>
                     <tr>
-                        <td>${item.getName()}</td>
-                        <td>${item.getTotalAmount()}</td>
+                        <th colspan="3">Order #<a href="${rootPath}/orderItem?id=${item.id}">${item.id}</a></th>
+                        <th>
+                            <c:choose>
+                                <c:when test="${item.orderStatusId==1}">
+                                    <a href="${rootPath}/orderItem?id=${item.id}">PAY NOW</a>
+                                </c:when>
+                                <c:otherwise>
+                                    <a href="${rootPath}/orderItem?id=${item.id}">MANAGE</a>
+                                </c:otherwise>
+                            </c:choose>
+                        </th>
                     </tr>
-                </tbody>
-            </table>
-            </c:forEach>
-        </div>
-        <div class="col-4">
-            <h5 class="pt-3 text-muted">Order Summary</h5>
-            <form action="${rootPath}/payment" method="get">
-                <table class="table table-borderless">
+                    </thead>
+                    <tbody>
                     <tr>
-                        <td>Subtotal (${cartCount} items)</td>
-                        <td>Rs. ${subTotal}</td>
-                    </tr>
-                    <tr>
-                        <td>Shipping Fee</td>
-                        <td> Rs. 237</td>
-                    </tr>
-                    <tr>
-                        <td><input class="form-control form-control-sm" type="text" placeholder="Enter discount code">
+                        <td>
+                            <small class="text-muted">
+                                Placed on: <em>${item.createdAt}</em><br>
+                                    ${item.name}<br>
+                                Mobile: ${item.mobile}<br>
+                                    ${item.address}
+                            </small>
                         </td>
                         <td>
-                            <button class="btn btn-sm btn-info w-100">Apply</button>
+                            <small class="text-muted">Total Amount: Rs. ${item.totalAmount}</small>
                         </td>
-                    </tr>
-                    <tr>
-                        <td>Total</td>
                         <td>
-                            <input class="form-control" type="hidden" value="${subTotal}" name="total">
-                            Rs. ${subTotal}
+                            <small class="text-muted rounded-pill bg-grey-50 p-1 d-inline-block">
+                                <c:choose>
+                                    <c:when test="${item.orderStatusId==1}">
+                                       Pending to Pay
+                                    </c:when>
+                                    <c:when test="${item.orderStatusId==2}">
+                                        In Progress
+                                    </c:when>
+                                    <c:when test="${item.orderStatusId==3}">
+                                        On the Way
+                                    </c:when>
+                                    <c:when test="${item.orderStatusId==4}">
+                                       Delivered
+                                    </c:when>
+                                    <c:when test="${item.orderStatusId==5}">
+                                        Cancellation in Progress
+                                    </c:when>
+                                    <c:otherwise>
+                                        Cancelled
+                                    </c:otherwise>
+                                </c:choose>
+                            </small>
+                        </td>
+                        <td>
+                            <small class="text-muted">Delivered on: </small>
                         </td>
                     </tr>
-                    <tr class="bg-light text-muted">
-                        <td colspan="2">
-                            <label class="form-label">Billing Address</label>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td colspan="2">
-                            <label class="form-label">Fullname</label>
-                            <input type="text" class="form-control form-control-sm" name="name" value="${CurrentUser.getFirstname()} ${CurrentUser.getLastname()}" required>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td colspan="2">
-                            <label class="form-label">Email</label>
-                            <input type="email" class="form-control form-control-sm" name="email" value="${CurrentUser.getEmail()}" required>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td colspan="2">
-                            <label class="form-label">Mobile</label>
-                            <input type="text" class="form-control form-control-sm" name="mobile" value="${CurrentUser.getContact()}" required>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td colspan="2">
-                            <label class="form-label">Address</label>
-                            <input type="text" class="form-control form-control-sm" name="address" value="${CurrentUser.getAddress()}" required>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td colspan="2">
-                            <button class="btn btn-sm btn-success w-100" type="submit">PROCEED TO PAY</button>
-                        </td>
-                    </tr>
+                    </tbody>
                 </table>
-            </form>
+            </c:forEach>
         </div>
     </div>
 </div>
