@@ -1,11 +1,7 @@
 package com.aptech.controllers.users;
 
-import com.aptech.dao.CartDao;
 import com.aptech.dao.OrderDao;
-import com.aptech.dao.OrderItemDao;
 import com.aptech.models.Order;
-import com.aptech.models.OrderItem;
-import com.aptech.models.User;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -13,8 +9,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.util.List;
 
 @WebServlet("/order-cancel")
 public class OrderCancelController extends HttpServlet {
@@ -28,4 +22,4 @@ public class OrderCancelController extends HttpServlet {
         }
     }
 
-   }
+}
