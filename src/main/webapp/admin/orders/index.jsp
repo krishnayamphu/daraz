@@ -12,7 +12,7 @@
 </head>
 <body>
 
-<%@include file="../nav.jsp"%>
+<%@include file="../nav.jsp" %>
 
 
 <div class="container">
@@ -22,22 +22,23 @@
 
     <div class="row">
         <div class="col-3">
-            <%@include file="../sidebar.jsp"%>
+            <%@include file="../sidebar.jsp" %>
         </div>
         <div class="col-9">
             <c:forEach var="item" items="${orders}">
                 <table class="table table-bordered">
                     <thead>
                     <tr>
-                        <th>Order #<a href="${rootPath}/orderItem?id=${item.getId()}">${item.getId()}</a></th>
-                        <th>
-                        </th>
+                        <th>Order #<a href="${rootPath}/admin/orderItem?id=${item.id}">${item.id}</a></th>
+                        <th>Total Amount</th>
+                        <th> Order Date</th>
                     </tr>
                     </thead>
                     <tbody>
                     <tr>
                         <td>${item.getName()}</td>
                         <td>${item.getTotalAmount()}</td>
+                        <td>${item.createdAt}</td>
                     </tr>
                     </tbody>
                 </table>

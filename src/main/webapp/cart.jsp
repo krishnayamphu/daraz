@@ -24,52 +24,62 @@
                 </tr>
                 </thead>
                 <tbody>
-                <c:forEach var="item" items="${cartItems}" varStatus="i">
-                    <tr>
-                        <th>${i.count}</th>
-                        <td><img width="50px" height="50px" src="${rootPath}/uploads/${item.getImage()}"
-                                 alt="${item.getName()}"> ${item.getName()}</td>
-                        <td>${item.getPrice()}</td>
-                        <td>${item.getQty()}</td>
-                        <td>${item.getTotal()}</td>
-                        <td>
-                            <a class="btn btn-primary" href="cart-edit?pid=${item.getProductId()}">
-                                <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
-                            </a>
-                            <!-- Button trigger modal -->
-                            <button type="button"
-                                    class="btn btn-danger"
-                                    data-bs-toggle="modal"
-                                    data-bs-target="#modal${item.getProductId()}">
-                                <i class="fa fa-trash-o" aria-hidden="true"></i>
-                            </button>
-                            <!-- Modal -->
-                            <div class="modal fade" id="modal${item.getProductId()}" tabindex="-1">
-                                <div class="modal-dialog">
-                                    <div class="modal-content">
-                                        <form action="${rootPath}/cart-del" method="post">
-                                            <input type="hidden" value="${item.getProductId()}" name="pid">
-                                            <div class="modal-header">
-                                                <h5 class="modal-title">Deleting Item</h5>
-                                                <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                                        aria-label="Close"></button>
+                <c:choose>
+                    <c:when test="${cartCount>0}">
+                        <c:forEach var="item" items="${cartItems}" varStatus="i">
+                            <tr>
+                                <th>${i.count}</th>
+                                <td><img width="50px" height="50px" src="${rootPath}/uploads/${item.getImage()}"
+                                         alt="${item.getName()}"> ${item.getName()}</td>
+                                <td>${item.getPrice()}</td>
+                                <td>${item.getQty()}</td>
+                                <td>${item.getTotal()}</td>
+                                <td>
+                                    <a class="btn btn-primary" href="cart-edit?pid=${item.getProductId()}">
+                                        <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                                    </a>
+                                    <!-- Button trigger modal -->
+                                    <button type="button"
+                                            class="btn btn-danger"
+                                            data-bs-toggle="modal"
+                                            data-bs-target="#modal${item.getProductId()}">
+                                        <i class="fa fa-trash-o" aria-hidden="true"></i>
+                                    </button>
+                                    <!-- Modal -->
+                                    <div class="modal fade" id="modal${item.getProductId()}" tabindex="-1">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <form action="${rootPath}/cart-del" method="post">
+                                                    <input type="hidden" value="${item.getProductId()}" name="pid">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title">Deleting Item</h5>
+                                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                                aria-label="Close"></button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <p class="modal-title">Are you sure delete this Item?</p>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                                                            Cancel
+                                                        </button>
+                                                        <button type="submit" class="btn btn-danger">Confirm</button>
+                                                    </div>
+                                                </form>
                                             </div>
-                                            <div class="modal-body">
-                                                <p class="modal-title">Are you sure delete this Item?</p>
-                                            </div>
-                                            <div class="modal-footer">
-                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
-                                                    Cancel
-                                                </button>
-                                                <button type="submit" class="btn btn-danger">Confirm</button>
-                                            </div>
-                                        </form>
+                                        </div>
                                     </div>
-                                </div>
-                            </div>
-                        </td>
-                    </tr>
-                </c:forEach>
+                                </td>
+                            </tr>
+                        </c:forEach>
+                    </c:when>
+                    <c:otherwise>
+                        <tr>
+                            <td class="text-center" colspan="6">No Items found</td>
+                        </tr>
+                    </c:otherwise>
+                </c:choose>
+
                 </tbody>
             </table>
         </div>

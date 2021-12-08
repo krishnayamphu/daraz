@@ -11,8 +11,8 @@
                     <a class="nav-link" href="${rootPath}">Home</a>
                 </li>
             </ul>
-            <form class="d-flex mb-0">
-                <input class="form-control search-box me-2" type="search" placeholder="Search">
+            <form action="${rootPath}/search" class="d-flex mb-0">
+                <input name="s" class="form-control search-box me-2" type="search" placeholder="Search">
                 <button class="btn btn-search" type="submit">Search</button>
             </form>
             <ul class="navbar-nav mb-2 mb-lg-0">

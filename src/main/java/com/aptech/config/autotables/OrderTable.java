@@ -22,7 +22,7 @@ public class OrderTable {
     public static void dropTable() {
         try {
             Connection con = ConnectDB.connect();
-            String sql = "DROP TABLE orders";
+            String sql = "DROP TABLE IF EXISTS orders";
             PreparedStatement ps = con.prepareStatement(sql);
             ps.execute("SET FOREIGN_KEY_CHECKS=0");
             ps.executeUpdate();

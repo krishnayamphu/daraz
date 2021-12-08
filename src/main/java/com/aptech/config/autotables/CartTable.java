@@ -22,11 +22,14 @@ public class CartTable {
     public static void dropTable() {
         try {
             Connection con = ConnectDB.connect();
-            String sql = "DROP TABLE cart";
+            String sql = "DROP TABLE IF EXISTS cart";
             PreparedStatement ps = con.prepareStatement(sql);
+            ps.execute("SET FOREIGN_KEY_CHECKS=0");
             if(ps.executeUpdate()==1){
                 System.out.println("dropped cart table.");
             }
+            ps.execute("SET FOREIGN_KEY_CHECKS=1");
+            ps.close();
         } catch (SQLException e) {
             e.printStackTrace();
         }

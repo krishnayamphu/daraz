@@ -71,6 +71,38 @@ public class ProductDao {
         return products;
     }
 
+    public static List<Product> getSearchProducts(String name) {
+        List<Product> products = new ArrayList<>();
+        try {
+            Connection con = ConnectDB.connect();
+            String sql = "SELECT * FROM products WHERE name LIKE CONCAT( '%',?,'%')";
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setString(1,name);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                Product product = new Product();
+                product.setId(rs.getInt("id"));
+                product.setName(rs.getString("name"));
+                product.setDescription(rs.getString("description"));
+                product.setSku(rs.getString("sku"));
+                product.setRegularPrice(rs.getDouble("regular_price"));
+                product.setSalesPrice(rs.getDouble("sales_price"));
+                product.setImage(rs.getString("image"));
+                product.setCategoryId(rs.getInt("category_id"));
+                product.setInventoryId(rs.getInt("inventory_id"));
+                product.setDiscountId(rs.getInt("discount_id"));
+                product.setCreatedAt(rs.getString("created_at"));
+                product.setUpdatedAt(rs.getString("updated_at"));
+
+                products.add(product);
+            }
+//            con.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return products;
+    }
+
     public static List<String> getCategoryByProductId(int id) {
         List<String> categories = new ArrayList<>();
         try {
@@ -87,6 +119,7 @@ public class ProductDao {
         }
         return categories;
     }
+
 
     public static boolean addProduct(Product product) {
         boolean status = false;
