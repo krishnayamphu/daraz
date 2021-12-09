@@ -125,18 +125,8 @@ public class ProductDao {
         boolean status = false;
         try {
             Connection con = ConnectDB.connect();
-            //String sql = "INSERT INTO products VALUES(null,?,?,?,?,?,?,?,?,?,null,null)";
             String sql = "INSERT INTO products(name,description,sku,regular_price,sales_price,image,category_id) VALUES(?,?,?,?,?,?,?)";
             PreparedStatement ps = con.prepareStatement(sql);
-//            ps.setString(1, product.getName());
-//            ps.setString(2, product.getDescription());
-//            ps.setString(3,product.getSku());
-//            ps.setDouble(4,product.getRegularPrice());
-//            ps.setDouble(5,product.getSalesPrice());
-//            ps.setString(6,product.getImage());
-//            ps.setInt(7,product.getCategoryId());
-//            ps.setInt(8,product.getInventoryId());
-//            ps.setInt(9,product.getDiscountId());
 
             ps.setString(1, product.getName());
             ps.setString(2, product.getDescription());
@@ -145,7 +135,6 @@ public class ProductDao {
             ps.setDouble(5,product.getSalesPrice());
             ps.setString(6,product.getImage());
             ps.setInt(7,product.getCategoryId());
-
 
             if (ps.executeUpdate() == 1) {
                 status = true;
@@ -160,11 +149,17 @@ public class ProductDao {
         boolean status = false;
         try {
             Connection con = ConnectDB.connect();
-            String sql = "UPDATE category SET name=?, description=? WHERE id=?";
+            //name,description,sku,regular_price,sales_price,image,category_id
+            String sql = "UPDATE products SET name=?, description=?,sku=?,regular_price=?,sales_price=?,image=?,category_id=? WHERE id=?";
             PreparedStatement ps = con.prepareStatement(sql);
-//            ps.setString(1, category.getName());
-//            ps.setString(2, category.getDescription());
-//            ps.setInt(3, category.getId());
+            ps.setString(1, product.getName());
+            ps.setString(2, product.getDescription());
+            ps.setString(3,product.getSku());
+            ps.setDouble(4,product.getRegularPrice());
+            ps.setDouble(5,product.getSalesPrice());
+            ps.setString(6,product.getImage());
+            ps.setInt(7,product.getCategoryId());
+            ps.setInt(8,product.getId());
             if (ps.executeUpdate() == 1) {
                 status = true;
             }
@@ -174,17 +169,17 @@ public class ProductDao {
         return status;
     }
 
-    public static boolean delCategory(int id) {
-        boolean status = false;
+    public static boolean delProduct(int id){
+        boolean status=false;
         try {
             Connection con = ConnectDB.connect();
-            String sql = "DELETE FROM category WHERE id=?";
-            PreparedStatement ps = con.prepareStatement(sql);
-            ps.setInt(1, id);
-            if (ps.executeUpdate() == 1) {
-                status = true;
+            String sql = "DELETE FROM products WHERE id=?";
+            PreparedStatement ps=con.prepareStatement(sql);
+            ps.setInt(1,id);
+            if(ps.executeUpdate()==1){
+                status=true;
             }
-        } catch (SQLException e) {
+        }catch (SQLException e){
             System.err.println(e);
         }
         return status;

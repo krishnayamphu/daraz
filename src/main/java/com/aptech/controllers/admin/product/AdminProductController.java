@@ -14,11 +14,11 @@ import java.io.IOException;
 import java.util.List;
 
 @WebServlet("/admin/products")
-public class ProductController extends HttpServlet {
+public class AdminProductController extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         List<Product> products= ProductDao.getAllProducts();
         request.setAttribute("products",products);
 
-        request.getRequestDispatcher("product/home.jsp").forward(request,response);
+        request.getRequestDispatcher("product/index.jsp").forward(request,response);
     }
 }

@@ -12,7 +12,7 @@
 </head>
 <body>
 
-<%@include file="../nav.jsp"%>
+<%@include file="../nav.jsp" %>
 
 
 <div class="container">
@@ -21,7 +21,8 @@
         <div class="col">
             <ul class="nav justify-content-end">
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="product-add"><i class="fa fa-book"></i> Add Product</a>
+                    <a class="nav-link active" aria-current="page" href="product-add"><i class="fa fa-book"></i> Add
+                        Product</a>
                 </li>
             </ul>
         </div>
@@ -34,7 +35,7 @@
     </div>
     <div class="row">
         <div class="col-3">
-            <%@include file="../sidebar.jsp"%>
+            <%@include file="../sidebar.jsp" %>
         </div>
         <div class="col-9">
             <table class="table table-bordered ">
@@ -65,7 +66,8 @@
                         </td>
                         <td>${product.createdAt}</td>
                         <td>
-                            <a class="btn btn-primary" href="product-edit?id=${product.id}"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
+                            <a class="btn btn-primary" href="product-edit?id=${product.id}"><i
+                                    class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
                             <!-- Button trigger modal -->
                             <button type="button" class="btn btn-danger" data-bs-toggle="modal"
                                     data-bs-target="#modal${product.id}">
@@ -75,26 +77,29 @@
 
 
                         <!-- Modal -->
-                        <div class="modal fade" id="modal${product.id}" tabindex="-1" aria-labelledby="modal${product.id}"
+                        <div class="modal fade" id="modal${product.id}" tabindex="-1"
+                             aria-labelledby="modal${product.id}"
                              aria-hidden="true">
                             <div class="modal-dialog">
                                 <div class="modal-content">
-                                    <form action="product-del" method="post">
-                                        <input type="hidden" value="${product.id}" name="id">
-                                        <div class="modal-header">
-                                            <h5 class="modal-title" id="modal${product.id}">Deleting Item</h5>
-                                            <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                                    aria-label="Close"></button>
-                                        </div>
-                                        <div class="modal-body">
-                                            <p class="modal-title" id="modal${product.id}">Are you sure delete this Item?</p>
-                                        </div>
-                                        <div class="modal-footer">
-                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel
-                                            </button>
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="modal${product.id}">Deleting Item</h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <p class="modal-title" id="modal${product.id}">Are you sure delete this
+                                            Item?</p>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                                            Cancel
+                                        </button>
+                                        <form action="${rootPath}/admin/product-del" method="post">
+                                            <input type="hidden" value="${product.id}" name="id">
                                             <button type="submit" class="btn btn-danger">Confirm</button>
-                                        </div>
-                                    </form>
+                                        </form>
+                                    </div>
                                 </div>
                             </div>
                         </div>

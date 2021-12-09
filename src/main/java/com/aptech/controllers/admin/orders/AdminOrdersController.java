@@ -18,7 +18,7 @@ import java.io.IOException;
 import java.util.List;
 
 @WebServlet("/admin/orders")
-public class OrdersController extends HttpServlet {
+public class AdminOrdersController extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         User user=(User)getServletContext().getAttribute("CurrentUser");
         int uid=user.getId();

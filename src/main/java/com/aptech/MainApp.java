@@ -9,10 +9,10 @@ import java.util.List;
 
 public class MainApp {
     public static void main(String[] args) {
-        List<Product> products= ProductDao.getSearchProducts("a");
-        for(Product p:products)
+        Product product= ProductDao.getProductById(1);
+        for(String p:product.getCategories(1))
         {
-            System.out.println(p.getName());
+            System.out.println(p);
         }
     }
 }
