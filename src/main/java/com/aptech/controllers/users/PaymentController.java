@@ -25,10 +25,10 @@ public class PaymentController extends HttpServlet {
        if(pmtId==1){
            Invoice invoice=new Invoice(oid,1);
            if(InvoiceDao.addInvoice(invoice)){
-               Order order=new Order();
-               order.setId(oid);
-               order.setOrderStatusId(2);
-               OrderDao.updateOrderStatusId(order);
+//               Order order=new Order();
+//               order.setId(oid);
+//               order.setOrderStatusId(2);
+//               OrderDao.updateOrderStatusId(order);
                String msg = " <div class='alert alert-success'>Order Confirmed Successfully !</div>";
                request.getSession().setAttribute("success", msg);
                 response.sendRedirect("order");

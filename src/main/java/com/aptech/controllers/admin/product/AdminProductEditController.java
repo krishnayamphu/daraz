@@ -58,6 +58,6 @@ public class AdminProductEditController extends HttpServlet {
         }
         request.setAttribute("categories",categories);
         request.setAttribute("product",product);
-        request.getRequestDispatcher("product/edit.jsp").forward(request,response);
+        request.getRequestDispatcher("product/show.jsp").forward(request,response);
     }
 }

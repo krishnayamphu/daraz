@@ -8,9 +8,9 @@ import java.sql.SQLException;
 
 public class DiscountTable {
     public static void createTable() {
-        try{
+        try {
             Connection con = ConnectDB.connect();
-            String sql = "CREATE TABLE discount (id int PRIMARY KEY AUTO_INCREMENT,name varchar(56), description text, dis_percentage decimal, active int,created_at timestamp DEFAULT CURRENT_TIMESTAMP,updated_at timestamp DEFAULT CURRENT_TIMESTAMP)";
+            String sql = "CREATE TABLE discount (id int PRIMARY KEY AUTO_INCREMENT, code varchar(56) unique not null, coupon_type varchar(56), description text, dis_percentage decimal not null, min_spend_amount decimal not null, active int, expired_at date, created_at timestamp DEFAULT CURRENT_TIMESTAMP)";
             PreparedStatement ps = con.prepareStatement(sql);
             ps.executeUpdate();
             System.out.println("discount table created.");

@@ -20,12 +20,8 @@ import java.util.List;
 @WebServlet("/admin/orders")
 public class AdminOrdersController extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        User user=(User)getServletContext().getAttribute("CurrentUser");
-        int uid=user.getId();
-        double subTotal= CartDao.getSubTotal(uid);
         List<Order> orders= OrderDao.getPaidOrders();
         request.setAttribute("orders",orders);
-        request.setAttribute("subTotal",subTotal);
         request.getRequestDispatcher("orders/index.jsp").forward(request,response);
     }
 }

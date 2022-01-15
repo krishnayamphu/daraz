@@ -13,7 +13,7 @@ public class DatabaseSeeder {
 //        CategoryTable.createTable();
         InventoryTable.createTable();
         DiscountTable.createTable();
-//        ProductTable.createTable();
+        ProductTable.createTable();
 
         CartTable.createTable();
         OrderStatusTable.createTable();
@@ -31,7 +31,7 @@ public class DatabaseSeeder {
 //        CategoryTable.dropTable();
         InventoryTable.dropTable();
         DiscountTable.dropTable();
-//        ProductTable.dropTable();
+        ProductTable.dropTable();
 
 
         CartTable.dropTable();

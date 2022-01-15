@@ -52,6 +52,6 @@ public class CartEditController extends HttpServlet {
         request.setAttribute("pageTitle",product.getName());
         request.setAttribute("product",product);
         request.setAttribute("cart",cart);
-        request.getRequestDispatcher("cart-edit.jsp").forward(request,response);
+        request.getRequestDispatcher("cart-show.jsp").forward(request,response);
     }
 }

@@ -17,19 +17,18 @@ import java.util.List;
 public class AdminOrderItemController extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         int orderId =Integer.parseInt(request.getParameter("oid"));
-        String name=request.getParameter("name");
-        String mobile=request.getParameter("mobile");
-        String email=request.getParameter("email");
-        String address=request.getParameter("address");
+        int sid =Integer.parseInt(request.getParameter("sid"));
+
 
         Order order=new Order();
         order.setId(orderId);
-        order.setName(name);
-        order.setEmail(email);
-        order.setMobile(mobile);
-        order.setAddress(address);
-        if(OrderDao.updateOrderItem(order)){
-            response.sendRedirect("payment?oid="+orderId);
+        order.setOrderStatusId(sid);
+
+        if(OrderDao.updateOrderStatusId(order)){
+            response.sendRedirect(request.getHeader("referer"));
+            System.out.println(orderId);
+            System.out.println(sid);
+           // response.sendRedirect("admin/orderItem?id="+orderId);
         }else {
             String msg = "<div class='alert alert-danger'>Error while ordering product</div>";
             request.getSession().setAttribute("err", msg);

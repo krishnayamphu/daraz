@@ -1,5 +1,3 @@
-<%@ page import="java.util.List" %>
-<%@ page import="com.aptech.dao.ProductDao" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
@@ -25,24 +23,28 @@
             <%@include file="../sidebar.jsp" %>
         </div>
         <div class="col-9">
-            <c:forEach var="item" items="${orders}">
-                <table class="table table-bordered">
-                    <thead>
+            <table class="table table-bordered">
+                <thead>
+                <tr>
+                    <th>OrderID #</th>
+                    <th>Total Amount</th>
+                    <th> Order Date</th>
+                    <th> Action</th>
+                </tr>
+                </thead>
+                <tbody>
+                <c:forEach var="item" items="${orders}">
                     <tr>
-                        <th>Order #<a href="${rootPath}/admin/orderItem?id=${item.id}">${item.id}</a></th>
-                        <th>Total Amount</th>
-                        <th> Order Date</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr>
-                        <td>${item.getName()}</td>
+                        <td><a href="${rootPath}/admin/orderItem?id=${item.id}">${item.id}</a></td>
                         <td>${item.getTotalAmount()}</td>
                         <td>${item.createdAt}</td>
+                        <td>
+                            <a class="btn btn-info" href="${rootPath}/admin/orderItem?id=${item.id}">Process</a>
+                        </td>
                     </tr>
-                    </tbody>
-                </table>
-            </c:forEach>
+                </c:forEach>
+                </tbody>
+            </table>
         </div>
     </div>
 
